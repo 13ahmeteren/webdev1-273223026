@@ -10,7 +10,7 @@ function textResult(id, text, isError = false) {
     id: id,
     result: {
       content: [{ type: 'text', text: String(text) }],
-      isError: isError,
+      isError: Boolean(isError),
     },
   };
 }
@@ -62,15 +62,14 @@ function handle(msg) {
     const args = msg.params.arguments || {};
 
     if (name === 'find_lecture') {
-      const lecture = lectures.find((l) => l.number === args.number);
+      const targetNumber = Number(args.number);
+      const lecture = lectures.find((l) => Number(l.number) === targetNumber);
+
       if (!lecture) {
         return textResult(msg.id, 'There is no lecture ' + args.number + '.', true);
       }
-      const topics = Array.isArray(lecture.topics)
-        ? lecture.topics.join(', ')
-        : (lecture.topics || lecture.description || '');
-      const details = topics ? '. Topics: ' + topics : '';
-      return textResult(msg.id, 'Lecture ' + lecture.number + ': ' + lecture.title + details, false);
+
+      return textResult(msg.id, 'Lecture ' + lecture.number + ': ' + lecture.title, false);
     }
 
     if (name === 'list_lectures') {
@@ -89,11 +88,13 @@ function handle(msg) {
 
 const lines = readline.createInterface({ input: process.stdin });
 lines.on('line', (line) => {
-  console.error('got: ' + line);
+  const trimmed = line.trim();
+  if (!trimmed) return;
   try {
-    const reply = handle(JSON.parse(line));
-     if (reply) send(reply);
+    const msg = JSON.parse(trimmed);
+    const reply = handle(msg);
+    if (reply) send(reply);
   } catch (err) {
-    console.error(err);
+    console.error('[mcp error] Failed to parse input:', err.message);
   }
 });
