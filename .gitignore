@@ -1,21 +1,19 @@
-# dependencies
+# Dependencies
 node_modules/
-.venv/
-__pycache__/
-*.pyc
+package-lock.json
 
-# secrets and local config
+# Environment variables
 .env
-.env.*
-!.env.example
+.env.local
 
-# local databases and build output
+# Databases & Runtime Data
+data/*.db
+data/*.sqlite
+data/*.sqlite3
 *.db
 *.sqlite
-*.sqlite3
-dist/
-build/
-coverage/
 
-# editor and OS files
+# OS and Editor Artifacts
 .DS_Store
+Thumbs.db
+.vscode/
