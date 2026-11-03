@@ -1,6 +1,9 @@
-const readline = require('node:readline');
-const fs = require('node:fs');
-const path = require('node:path');
+import readline from 'node:readline';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const lectures = JSON.parse(fs.readFileSync(path.join(__dirname, 'lectures.json'), 'utf8'));
 
