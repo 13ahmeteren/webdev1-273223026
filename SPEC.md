@@ -51,6 +51,10 @@ Plain HTML and vanilla JavaScript. Three screens: sign in (/login), hardware nod
 [AC-9] A visitor who opens /nodes without signing in is redirected to /login with a 302 redirect.
 [AC-10] After signing in with a seeded account, /nodes displays the three seeded hardware targets with name, architecture, memory, and wattage limits formatted in Watts.
 [AC-11] Deleting one node row directly in the database and reloading /nodes removes that node from the rendered table.
+[AC-12] An engineer who submits a benchmark with valid runtime and wattage within the node's TDP receives a 201 Created response.
+[AC-13] An engineer who submits a benchmark exceeding the node's maximum TDP wattage envelope receives a 409 Conflict response.
+[AC-14] An unauthenticated request to POST /api/runs returns a 401 Unauthorized response.
+[AC-15] A user attempting to delete another engineer's recorded benchmark run receives a 403 Forbidden response.
 
 ## Traceability
 | Criterion | Test |
