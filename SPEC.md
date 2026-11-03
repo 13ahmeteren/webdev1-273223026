@@ -70,6 +70,10 @@ Plain HTML and vanilla JavaScript. Three screens: sign in (/login), hardware nod
 | [AC-9] | (from Exercise 3) |
 | [AC-10] | (from Exercise 3) |
 | [AC-11] | (from Exercise 3) |
+| [AC-12] | (from Exercise 3) |
+| [AC-13] | (from Exercise 3) |
+| [AC-14] | (from Exercise 3) |
+| [AC-15] | (from Exercise 3) |
 
 ## Spec vs result
 Passed: Local sign-in authentication, redirection of unauthenticated requests from /nodes to /login, and dynamic display of seeded hardware nodes from SQLite.
